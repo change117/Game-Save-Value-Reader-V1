@@ -80,27 +80,37 @@ public sealed class MainViewModel : INotifyPropertyChanged
     private async void RunPipelineAsync()
     {
         IsBusy = true;
-        Result = "Searching for save structure…";
+        Result = "Searching local knowledge base and online sources…\n" +
+                 "(Brave Search → Wayback Machine → GitHub — this may take a moment)";
 
         try
         {
-            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            // Increase timeout to 60 s – Wayback Machine can be slow
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60));
 
             // Step 1 – identify game
             string identified = _gameIdentifier.IdentifyGame(GameName);
 
-            // Step 2 – search for save structure
+            // Step 2 – search for save structure (local → Brave/FR/Wayback → GitHub)
             var saveInfo = await _searcher.SearchAsync(identified, cts.Token).ConfigureAwait(true);
             if (saveInfo is null)
             {
-                Result = $"No documented save structure found for \"{identified}\".\n" +
-                         "Try a different game name or check community sources manually.";
+                Result = $"No documented save structure found for \"{identified}\".\n\n" +
+                         "Sources checked:\n" +
+                         "  • Local knowledge base (games.json)\n" +
+                         "  • Fearless Revolution forum (via Brave Search + Wayback Machine)\n" +
+                         "  • GitHub public repositories\n\n" +
+                         "Tips:\n" +
+                         "  • Use the exact name from Steam (e.g. \"Black Myth: Wukong\")\n" +
+                         "  • Some games have save data in proprietary formats that\n" +
+                         "    haven't been documented by the modding community yet.";
                 return;
             }
 
             // Step 3 – parse the save file
+            string source = string.IsNullOrWhiteSpace(saveInfo.Source) ? "unknown" : saveInfo.Source;
             long value = _parser.ParseValue(SaveFile, saveInfo);
-            Result = $"{saveInfo.ValueName}: {value}";
+            Result = $"{saveInfo.ValueName}: {value}\n\nSource: {source}";
         }
         catch (System.IO.FileNotFoundException ex)
         {

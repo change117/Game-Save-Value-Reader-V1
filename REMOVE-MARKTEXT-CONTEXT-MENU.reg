@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+; Removes the "Open with MarkText" context menu entry for .md files
+; Run this if you ever want to undo the change
+
+[-HKEY_CLASSES_ROOT\.md\shell\MarkText]
+
+[-HKEY_CLASSES_ROOT\SystemFileAssociations\.md\shell\MarkText]

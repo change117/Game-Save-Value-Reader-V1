@@ -1,0 +1,23 @@
+Windows Registry Editor Version 5.00
+
+; Adds "Open with MarkText" to the top of the right-click context menu for .md files
+; Visual Studio remains the default (double-click) app
+; To undo: run REMOVE-MARKTEXT-CONTEXT-MENU.reg
+
+; Method 1: Direct .md association
+[HKEY_CLASSES_ROOT\.md\shell\MarkText]
+@="Open with MarkText"
+"Position"="Top"
+"Icon"="\"C:\\Program Files\\MarkText\\MarkText.exe\""
+
+[HKEY_CLASSES_ROOT\.md\shell\MarkText\command]
+@="\"C:\\Program Files\\MarkText\\MarkText.exe\" \"%1\""
+
+; Method 2: SystemFileAssociations (Windows checks this for context menus)
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.md\shell\MarkText]
+@="Open with MarkText"
+"Position"="Top"
+"Icon"="\"C:\\Program Files\\MarkText\\MarkText.exe\""
+
+[HKEY_CLASSES_ROOT\SystemFileAssociations\.md\shell\MarkText\command]
+@="\"C:\\Program Files\\MarkText\\MarkText.exe\" \"%1\""
