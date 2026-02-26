@@ -24,7 +24,8 @@ public sealed class SaveFileParser
         if (!File.Exists(filePath))
             throw new FileNotFoundException("Save file not found.", filePath);
 
-        return ParseFromStream(File.OpenRead(filePath), descriptor);
+        using var stream = File.OpenRead(filePath);
+        return ParseFromStream(stream, descriptor);
     }
 
     /// <summary>
