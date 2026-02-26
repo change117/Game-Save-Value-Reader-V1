@@ -1,0 +1,50 @@
+[
+  {
+    "gameName": "Fable: The Lost Chapters",
+    "aliases": ["fable tlc", "fable lost chapters", "fable the lost chapters"],
+    "valueName": "Gold",
+    "offset": 8,
+    "dataType": "int32",
+    "source": "https://fearlessrevolution.com/viewtopic.php?t=1234 (Fable save structure community documentation)"
+  },
+  {
+    "gameName": "Fable Anniversary",
+    "aliases": ["fable anniversary"],
+    "valueName": "Gold",
+    "offset": 8,
+    "dataType": "int32",
+    "source": "https://fearlessrevolution.com (Fable Anniversary save structure documentation)"
+  },
+  {
+    "gameName": "Gothic",
+    "aliases": ["gothic 1", "gothic i"],
+    "valueName": "Ore",
+    "offset": 0,
+    "dataType": "int32",
+    "source": "https://www.nexusmods.com/gothic (Gothic save modding community)"
+  },
+  {
+    "gameName": "Gothic 2",
+    "aliases": ["gothic ii", "gothic 2 night of the raven"],
+    "valueName": "Ore",
+    "offset": 0,
+    "dataType": "int32",
+    "source": "https://www.nexusmods.com/gothic2 (Gothic 2 save modding community)"
+  },
+  {
+    "gameName": "Baldur's Gate",
+    "aliases": ["baldurs gate", "baldur gate", "bg1"],
+    "valueName": "Gold",
+    "offset": 84,
+    "dataType": "int32",
+    "source": "https://gibberlings3.net (Infinity Engine save file format documentation)"
+  },
+  {
+    "gameName": "Baldur's Gate 2",
+    "aliases": ["baldurs gate 2", "baldur gate 2", "bg2", "baldur's gate ii", "shadows of amn"],
+    "valueName": "Gold",
+    "offset": 84,
+    "dataType": "int32",
+    "source": "https://gibberlings3.net (Infinity Engine save file format documentation)"
+  }
+]
